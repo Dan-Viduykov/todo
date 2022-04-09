@@ -7,16 +7,15 @@
     "jest": true
   },
   "rules": {
-    // Make prettier code formatting suggestions more verbose.
-    "prettier/prettier": ["warn"],
-    // Disable <Fragment> => <> replacement. Feel free to change
     "react/jsx-fragments": "off",
-    // Disable prefer default export
     "import/prefer-default-export": "off",
     "@typescript-eslint/object-curly-spacing": "off",
     "react/jsx-filename-extension": [0],
     "import/extensions": "off",
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
+    "prettier/prettier": ["off", {}, { "usePrettierrc": false }],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["warn"]
   },
   "overrides": [
     {
