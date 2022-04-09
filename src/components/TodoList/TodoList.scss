@@ -1,0 +1,15 @@
+@import '../../sass/variables.scss';
+
+.todo-list {
+    background-color: darken($color-bc, 5%);
+    padding: 40px 20px;
+    border-radius: 20px;
+}
+
+.todo-list__item {
+    margin-bottom: 35px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}

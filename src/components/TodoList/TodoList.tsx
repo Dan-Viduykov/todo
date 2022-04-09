@@ -1,21 +1,29 @@
 import React, { FC } from 'react'
-import './TodoList.css'
-
 import TodoItem from '../TodoItem'
-import { ITodo } from '../../core/types'
-import { useTypedSelector } from '../../core/hooks/useTypedSelector'
+import './TodoList.scss'
 
 const TodoList: FC = () => {
-  const todos = useTypedSelector(state => state.todo)
 
-  const itemsList = todos?.map((todo: ITodo) => {
-    return <TodoItem todo={todo} />
-  })
+  const todo1 = {
+    userId: 1,
+    id: 1,
+    title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, doloremque?',
+    completed: false
+  }
+  const todo2 = {
+    userId: 1,
+    id: 1,
+    title: 'Lorem ipsum dolor sit amet.',
+    completed: false
+  }
 
   return (
-    <ul>
-      <li>
-        { itemsList }
+    <ul className='todo-list'>
+      <li className='todo-list__item'>
+        <TodoItem todo={todo1}/>
+      </li>
+      <li className='todo-list__item'>
+        <TodoItem todo={todo2}/>
       </li>
     </ul>
   )

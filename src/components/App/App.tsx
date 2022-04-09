@@ -1,13 +1,23 @@
 import React, { FC } from 'react'
-import './App.css'
+import './App.scss'
 
 import TodoList from '../TodoList'
+import Header from '../Header'
+import InputAddTodo from '../InputAddTodo'
+import InputSearch from '../InputSearch'
 
 const App: FC = () => {
   return (
-    <div>
-      <TodoList />
-    </div>
+    <main className='main'>
+      <div className='wrap'>
+        <Header />
+        <div className='inputs'>
+          <InputAddTodo />
+          <InputSearch />
+        </div>
+        <TodoList />
+      </div>
+    </main>
   )
 }
 
