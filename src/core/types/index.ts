@@ -1,16 +1,17 @@
 export enum TodoActionsTypes {
     ADD_TODO = 'ADD_TODO',
+    DELETE_TODO = 'DELETE_TODO',
+    COMPLETED_TODO = 'COMPLETED_TODO',
 }
 
 export interface ITodo {
-    userId: number,
     id: number,
     title: string,
     completed: boolean
 }
 
 export interface TodoState {
-    todo: ITodo[]
+    todos: ITodo[]
 }
 
 interface AddTodoAction {
@@ -18,4 +19,14 @@ interface AddTodoAction {
     payload?: ITodo
 }
 
-export type TodoActions = AddTodoAction
+interface DeleteTodoAction {
+    type: TodoActionsTypes.DELETE_TODO,
+    payload?: number
+}
+
+interface CompletedTodoAction {
+    type: TodoActionsTypes.COMPLETED_TODO,
+    payload?: number
+}
+
+export type TodoActions = AddTodoAction | DeleteTodoAction | CompletedTodoAction

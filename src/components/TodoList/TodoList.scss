@@ -4,12 +4,20 @@
     background-color: darken($color-bc, 5%);
     padding: 40px 20px;
     border-radius: 20px;
-}
 
-.todo-list__item {
-    margin-bottom: 35px;
+    &__item {
+        margin-bottom: 35px;
+    
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
 
-    &:last-child {
-        margin-bottom: 0;
+    &__notification {
+        font-size: 32px;
+        color: $color-text;
+        font-family: $secondary-text;
+        text-align: center;
+        opacity: 0.5;
     }
 }
