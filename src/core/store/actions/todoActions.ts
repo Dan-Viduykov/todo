@@ -1,9 +1,9 @@
-import { ITodo, TodoActionsTypes } from './../../types/index';
+import { TodoActionsTypes } from './../../types/index';
 
-export const addTodo = (todo: ITodo) => {
+export const addTodo = (title: string) => {
     return {
         type: TodoActionsTypes.ADD_TODO,
-        payload: todo
+        payload: title
     }
 }
 

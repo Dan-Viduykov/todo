@@ -16,7 +16,7 @@ export interface TodoState {
 
 interface AddTodoAction {
     type: TodoActionsTypes.ADD_TODO,
-    payload?: ITodo
+    payload?: string
 }
 
 interface DeleteTodoAction {

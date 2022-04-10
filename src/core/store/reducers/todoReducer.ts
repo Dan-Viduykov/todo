@@ -16,6 +16,14 @@ const defaultState: TodoState = {
     ]
 }
 
+const addTodo = (title: string = '') => {
+    return {
+        id: new Date().getTime(),
+        title: title,
+        completed: false
+    }
+}
+
 export const todoReducer = (state = defaultState, action: TodoActions): TodoState => {
     const { todos } = state
     const idx = todos.findIndex((todo) => todo.id === action.payload);
@@ -34,6 +42,15 @@ export const todoReducer = (state = defaultState, action: TodoActions): TodoStat
                     { ...todo, completed: !todo.completed } : todo
                 ) 
             };
+
+        case TodoActionsTypes.ADD_TODO:
+            return {
+                ...state,
+                todos: [
+                    addTodo(action.payload == '' ? 'new todo' : action.payload),
+                    ...todos
+                ]
+            }
 
         default:
             return state

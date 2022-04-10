@@ -11,6 +11,7 @@
     font-family: $secondary-text;
     word-spacing: 5px;
     line-height: 35px;
+    transition: .1s;
 
     &__title {
         color: $color-text;
@@ -73,5 +74,13 @@
             transform: scale(1.2);
         }
         
+    }
+
+    &--completed {
+        background-color: darken($color-bc, 20%);
+        
+        .todo-item__title {
+            color: rgba($color-text, 0.5);
+        }
     }
 }
