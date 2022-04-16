@@ -9,7 +9,8 @@ const InputAddTodo: FC = () => {
 
     const onSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        dispatch(addTodo(value))
+        dispatch(addTodo(value));
+        setValue('')
     }
 
     return (

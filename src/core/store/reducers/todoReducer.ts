@@ -5,15 +5,21 @@ const defaultState: TodoState = {
     todos: [
         {
             id: 1,
-            title: 'lorem lorem lorem',
+            title: 'drink coffee',
             completed: false
         },
         {
             id: 2,
-            title: 'lorem lorem lorem lorem lorem lorem',
+            title: 'build react redux ts app',
+            completed: false
+        },
+        {
+            id: 3,
+            title: 'out for running',
             completed: false
         }
-    ]
+    ],
+    filteredChars: '' 
 }
 
 const addTodo = (title: string = '') => {
@@ -25,32 +31,40 @@ const addTodo = (title: string = '') => {
 }
 
 export const todoReducer = (state = defaultState, action: TodoActions): TodoState => {
-    const { todos } = state
-    const idx = todos.findIndex((todo) => todo.id === action.payload);
+    const { todos } = state;
+    const payload = action.payload;
+    const idx = todos.findIndex((todo) => todo.id === payload);
 
     switch (action.type) {
+        case TodoActionsTypes.ADD_TODO:
+            const title = payload == '' ? 'new todo' : payload?.toString();
+            const addedTodos = [ addTodo(title), ...todos ];
+
+            return {
+                ...state,
+                todos: addedTodos
+            }
+
         case TodoActionsTypes.DELETE_TODO:
-            return {...state, todos: [
+            const deletedTodos = [
                 ...todos.slice(0, idx),
                 ...todos.slice(idx! + 1)
-            ]};
+            ]
+
+            return {
+                ...state,
+                todos: deletedTodos
+            };
             
         case TodoActionsTypes.COMPLETED_TODO:
-            return {
-                ...state,
-                todos: todos.map(todo => todo.id === action.payload ?
-                    { ...todo, completed: !todo.completed } : todo
-                ) 
-            };
+            const completedTodos = todos.map((todo) => {
+                return todo.id === payload ? { ...todo, completed: !todo.completed } : todo
+            }) 
 
-        case TodoActionsTypes.ADD_TODO:
             return {
                 ...state,
-                todos: [
-                    addTodo(action.payload == '' ? 'new todo' : action.payload),
-                    ...todos
-                ]
-            }
+                todos: completedTodos
+            };
 
         default:
             return state

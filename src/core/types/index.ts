@@ -11,7 +11,8 @@ export interface ITodo {
 }
 
 export interface TodoState {
-    todos: ITodo[]
+    todos: ITodo[];
+    filteredChars: string;
 }
 
 interface AddTodoAction {
