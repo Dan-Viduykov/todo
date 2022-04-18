@@ -1,8 +1,15 @@
-import React, { FC, useState } from "react";
+import React, { ChangeEvent, FC, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { filteredTodo } from "../../core/store/actions/todoActions";
 import './InputSearch.scss'
 
 const InputSearch: FC = () => {
     const [ value, setValue ] = useState('');
+    const dispatch = useDispatch();
+    
+    useEffect(() => {
+        dispatch(filteredTodo(value.trim()));
+    }, [value])
 
     return (
         <input
@@ -10,7 +17,7 @@ const InputSearch: FC = () => {
             type="text"
             placeholder="Search"
             value={value}
-            onChange={(event) => setValue(event.target.value)} />
+            onInput={(event: ChangeEvent<HTMLInputElement>) =>setValue(event.target.value)} />
     )
 }
 

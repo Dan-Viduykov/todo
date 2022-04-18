@@ -19,7 +19,7 @@ const defaultState: TodoState = {
             completed: false
         }
     ],
-    filteredChars: '' 
+    filteredChars: ''
 }
 
 const addTodo = (title: string = '') => {
@@ -32,18 +32,15 @@ const addTodo = (title: string = '') => {
 
 export const todoReducer = (state = defaultState, action: TodoActions): TodoState => {
     const { todos } = state;
-    const payload = action.payload;
-    const idx = todos.findIndex((todo) => todo.id === payload);
+
+    const idx = todos.findIndex((todo) => todo.id === action.payload);
 
     switch (action.type) {
         case TodoActionsTypes.ADD_TODO:
-            const title = payload == '' ? 'new todo' : payload?.toString();
+            const title = action.payload == '' ? 'new todo' : action.payload?.toString();
             const addedTodos = [ addTodo(title), ...todos ];
 
-            return {
-                ...state,
-                todos: addedTodos
-            }
+            return { ...state, todos: addedTodos }
 
         case TodoActionsTypes.DELETE_TODO:
             const deletedTodos = [
@@ -51,20 +48,20 @@ export const todoReducer = (state = defaultState, action: TodoActions): TodoStat
                 ...todos.slice(idx! + 1)
             ]
 
-            return {
-                ...state,
-                todos: deletedTodos
-            };
+            return { ...state, todos: deletedTodos };
             
         case TodoActionsTypes.COMPLETED_TODO:
             const completedTodos = todos.map((todo) => {
-                return todo.id === payload ? { ...todo, completed: !todo.completed } : todo
+                return todo.id === action.payload ? { ...todo, completed: !todo.completed } : todo
             }) 
 
+            return { ...state, todos: completedTodos };
+
+        case TodoActionsTypes.FILTERED_TODO:
             return {
                 ...state,
-                todos: completedTodos
-            };
+                filteredChars: action.payload
+            }
 
         default:
             return state

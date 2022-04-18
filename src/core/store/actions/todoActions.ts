@@ -20,3 +20,10 @@ export const completedTodo = (id: number) => {
         payload: id
     }
 }
+
+export const filteredTodo = (filterChars: string) => {
+    return {
+        type: TodoActionsTypes.FILTERED_TODO,
+        payload: filterChars
+    }
+}
